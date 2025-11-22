@@ -1,5 +1,6 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* styles/globals.css */
 :root{
   --accent: #0b5cff;
@@ -8,8 +9,51 @@
 html,body,#__next { height:100%; margin:0; font-family:Inter, system-ui, Arial, sans-serif; }
 a { color: var(--accent); text-decoration: none; }
 .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
-.header { display:flex; justify-content:space-between; align-items:center; padding:12px 0; }
-.nav a { margin-left:16px; font-weight:500; color:#333; }
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+.header { 
+  display:flex; 
+  flex-direction: column; 
+  align-items:flex-start; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: 2rem;
+}
+.header__title-group { 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.header__text h1 {
+  font-size: 1.75rem; /* Reduces the default H1 size */
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  background-color: #e0e0e0; /* A sample placeholder color */
+  border-radius: 50%;
+}
+.nav a { 
+  font-weight:500; 
+  color:#333;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.3s ease-out;
+}
+.nav a:not(.active):hover {
+  background-color: rgba(0, 0, 0, 0.04); /* Very subtle glassy background */
+  transform: translateY(-2px); /* Lifts the item up */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+.nav a:active {
+  transform: translateY(-1px); /* Gives a "press down" effect on click */
+}
 .hero { background:#f7f9ff; padding:24px; border-radius:8px; margin:18px 0; }
 .card { border:1px solid #eee; padding:12px; border-radius:8px; margin-bottom:12px; }
 .footer { text-align:center; color:var(--muted); padding:20px 0; margin-top:40px; border-top:1px solid #eee; }
@@ -18,6 +62,12 @@ a { color: var(--accent); text-decoration: none; }
 .input, textarea, select { padding:8px; border:1px solid #ddd; border-radius:6px; }
 .button { background:var(--accent); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
 .small { font-size:0.9rem; color:var(--muted); }
+.nav a.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+
 .img-thumb { width:100%; height:160px; object-fit:cover; border-radius:6px; }
 @keyframes marquee {
   0% { transform: translateX(100%); }
@@ -26,4 +76,118 @@ a { color: var(--accent); text-decoration: none; }
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Responsive Header Styles === */
+
+/* Style for the hamburger button */
+.nav-toggle {
+  display: none; /* Hidden on desktop */
+  padding: 0.5em;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem; /* Pushes the button from the right edge, moving it left */
+  top: 2em;
+  z-index: 1000;
+}
+
+.hamburger {
+  display: block;
+  position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  background: #333;
+  width: 2em;
+  height: 3px;
+  border-radius: 1em;
+  transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.hamburger::before { top: 6px; }
+.hamburger::after { bottom: 6px; }
+
+/* Mobile navigation styles */
+@media (max-width: 1024px) {
+  .header__title-group { justify-content: flex-start; width: 100%; }
+  .header__text { text-align: left; }
+  .header__text h1 {
+    font-size: 1.5rem; /* Further reduce size on mobile */
+  }
+  .logo { width: 40px; height: 40px; }
+
+
+
+  .nav {
+    /* Change from side-panel to a dropdown */
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+    gap: 0;
+  }
+
+  .nav--visible {
+    /* A height large enough to show all items */
+    max-height: 100vh; 
+    transition: max-height 1s ease-in-out;
+  }
+
+  .nav a {
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0; /* Remove radius for a flatter list look */
+    padding: 1rem 0; /* Add vertical padding */
+  }
+
+  .nav a:last-child {
+    border-bottom: none; /* Remove border from the last item */
+  }
+
+  .nav a.active {
+    background-color: transparent; /* Override desktop active style */
+    color: var(--accent);
+  }
+
+  .nav-toggle {
+    display: block; /* Show hamburger on mobile */
+  }
+
+  /* Animate hamburger to close icon */
+  .nav--visible .hamburger {
+    transform: rotate(.625turn);
+  }
+
+  .nav--visible .hamburger::before {
+    transform: rotate(90deg) translateX(-6px);
+  }
+
+  .nav--visible .hamburger::after {
+    opacity: 0;
+  }
 }
