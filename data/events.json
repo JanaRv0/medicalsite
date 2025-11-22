@@ -1,0 +1,18 @@
+[
+  {
+    "id": "e1",
+    "title": "Annual CME: Ethics in End-of-life Care",
+    "date": "2025-09-12",
+    "location": "St. Mary's Hall",
+    "summary": "A full-day CME covering Catholic perspectives on palliative care.",
+    "image": "/images/placeholder-event.jpg"
+  },
+  {
+    "id": "e2",
+    "title": "Medical Outreach — Free Clinic",
+    "date": "2025-07-05",
+    "location": "St. Joseph's Parish Grounds",
+    "summary": "Free consultations and medicines for underserved communities.",
+    "image": "/images/placeholder-event.jpg"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id":"m1",
+    "name":"Dr. Maria Perera",
+    "role":"President",
+    "bio":"General Physician. Passionate about pastoral care and medical ethics.",
+    "photo":"/images/member-1.jpg",
+    "contact":"maria@example.org"
+  },
+  {
+    "id":"m2",
+    "name":"Dr. Rohan Silva",
+    "role":"Secretary",
+    "bio":"Surgeon and community outreach coordinator.",
+    "photo":"/images/member-1.jpg",
+    "contact":"rohan@example.org"
+  }
+]
