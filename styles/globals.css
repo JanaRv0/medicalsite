@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* styles/globals.css */
 :root{
-  --accent: #0b5cff;
+  --accent: #479adf;
   --muted: #666;
 }
 html,body,#__next { height:100%; margin:0; font-family:Inter, system-ui, Arial, sans-serif; }
@@ -66,13 +66,20 @@ a { color: var(--accent); text-decoration: none; }
 .card .overlay a span { display: none; }
 .card .overlay a:hover, .card .overlay a:focus { transform: scale(1.06); background: rgba(255,255,255,0.08); }
 .footer { text-align:center; color:var(--muted); padding:20px 0; margin-top:40px; border-top:1px solid #eee; }
+
+/* Fixed footer modifier (use per-page by adding `footer--fixed` to the Footer component)
+  and reserve space by adding `with-fixed-footer` to the page main container */
+.footer--fixed { position: fixed; left:0; right:0; bottom:0; text-align:center; color:var(--muted); padding:18px 0; border-top:1px solid #eee; background: #fff; z-index:50; box-shadow: 0 -4px 10px rgba(0,0,0,0.04); }
+.with-fixed-footer { padding-bottom: 88px; }
 .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
 .form-field { display:flex; flex-direction:column; margin-bottom:12px; }
 .input, textarea, select { padding:8px; border:1px solid #ddd; border-radius:6px; }
 .button { background:var(--accent); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
 .small { font-size:0.9rem; color:var(--muted); }
+
 .nav a.active {
-  background-color: var(--accent);
+  /* Active nav color: muted teal for better contrast and harmony */
+  background-color: #0b785f; /* muted teal */
   color: white;
 }
 

@@ -4,7 +4,7 @@ import news from '../data/news.json';
 
 export default function News(){
   return (
-    <Layout>
+    <Layout footerClass="footer--fixed">
       <h2>News & Announcements</h2>
       <div>
         {news.map(n => (
