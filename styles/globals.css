@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* styles/globals.css */
 :root{
-  --accent: #479adf;
+  --accent: #010f1a;
   --muted: #666;
 }
 html,body,#__next { height:100%; margin:0; font-family:Inter, system-ui, Arial, sans-serif; }
@@ -13,8 +13,13 @@ a { color: var(--accent); text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: white;
-  border-bottom: 1px solid #eee;
+  /* Liquid glass look: translucent gradient, stronger blur and subtle depth */
+  background: linear-gradient(135deg, rgba(255,255,255,0.78), rgba(245,250,255,0.58));
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+  transition: background 240ms ease, box-shadow 240ms ease, transform 240ms ease;
 }
 .header { 
   display:flex; 
@@ -39,20 +44,28 @@ a { color: var(--accent); text-decoration: none; }
   background-color: #e0e0e0; /* A sample placeholder color */
   border-radius: 50%;
 }
-.nav a { 
+.nav a {  
+  position: relative;
+  display: inline-block;
   font-weight:500; 
-  color:#333;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  transition: all 0.3s ease-out;
+  color:#17394a; /* slightly darker text for glass */
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  transition: color 180ms ease, transform 160ms ease, box-shadow 160ms ease, background-color 180ms ease;
+  will-change: transform, box-shadow;
+  background: rgba(255,255,255,0.06); /* subtle translucent base */
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(2px);
 }
 .nav a:not(.active):hover {
-  background-color: rgba(0, 0, 0, 0.04); /* Very subtle glassy background */
-  transform: translateY(-2px); /* Lifts the item up */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  /* glassy hover: brighten and lift slightly */
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(13, 31, 67, 0.08);
+  color: #08323a;
 }
 .nav a:active {
-  transform: translateY(-1px); /* Gives a "press down" effect on click */
+  transform: translateY(-5px); /* Gives a "press down" effect on click */
 }
 .hero { background:#f7f9ff; padding:24px; border-radius:8px; margin:18px 0; }
 .card { border:1px solid #eee; padding:12px; border-radius:8px; margin-bottom:12px; }
@@ -78,9 +91,11 @@ a { color: var(--accent); text-decoration: none; }
 .small { font-size:0.9rem; color:var(--muted); }
 
 .nav a.active {
-  /* Active nav color: muted teal for better contrast and harmony */
-  background-color: #0b785f; /* muted teal */
-  color: white;
+  /* Active nav uses a glassy accent with subtle glow */
+  background: linear-gradient(180deg, rgba(11,120,95,0.95), rgba(11,120,95,0.88));
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(11,120,95,0.12);
+  border-color: rgba(255,255,255,0.06);
 }
 
 
@@ -177,7 +192,7 @@ a { color: var(--accent); text-decoration: none; }
     font-size: 1.2rem;
     font-weight: 500;
     border-bottom: 1px solid #ccc;
-    border-radius: 0; /* Remove radius for a flatter list look */
+    border-radius: 10px; /* Remove radius for a flatter list look */
     padding: 1rem 0; /* Add vertical padding */
   }
 
