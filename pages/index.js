@@ -6,6 +6,18 @@ import events from '../data/events.json';
 export default function Home(){
   return (
     <Layout>
+        <section>
+  
+
+  <div className="overflow-hidden whitespace-nowrap">
+    <div className="inline-flex animate-marquee gap-6">
+      {events.map((e) => (
+        <EventCard key={e.id} event={e} />
+      ))}
+    </div>
+  </div>
+</section>
+
       <section className="hero">
         <h2>Our Mission</h2>
         <p>To support healthcare professionals in living out their Catholic faith while providing compassionate medical care.</p>

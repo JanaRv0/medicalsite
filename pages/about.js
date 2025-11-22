@@ -11,14 +11,36 @@ export default function About(){
         <p>Founded in 1998 by a group of Catholic healthcare professionals to support faith-based medical practice and outreach.</p>
       </div>
 
-      <div className="card">
-        <h3>Vision / Mission / Objectives</h3>
-        <ul>
-          <li>Promote Catholic medical ethics within practice.</li>
-          <li>Provide pastoral support to healthcare workers.</li>
-          <li>Organize community medical outreach and education.</li>
-        </ul>
+       <section className="container mx-auto p-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Mission */}
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition">
+          <h2 className="text-2xl font-bold text-blue-600 mb-4">Mission</h2>
+          <p className="text-gray-700">
+            To serve with compassion and uphold medical ethics guided by faith.
+          </p>
+        </div>
+
+        {/* Vision */}
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition">
+          <h2 className="text-2xl font-bold text-green-600 mb-4">Vision</h2>
+          <p className="text-gray-700">
+            To inspire physicians to integrate spirituality and service in healthcare.
+          </p>
+        </div>
+
+        {/* Objective */}
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition">
+          <h2 className="text-2xl font-bold text-purple-600 mb-4">Objective</h2>
+          <p className="text-gray-700">
+            To build a community that promotes learning, outreach, and ethical practice.
+          </p>
+        </div>
+
       </div>
+    </section>
+
 
       <div className="card">
         <h3>Patron Saints</h3>
