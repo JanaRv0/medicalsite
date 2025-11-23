@@ -1,0 +1,5 @@
+[
+  { "id": 1, "src": "/images/events/event1.png", "alt": "Event 1" },
+  { "id": 2, "src": "/images/events/event2.png", "alt": "Event 2" },
+  { "id": 3, "src": "/images/events/event3.png", "alt": "Event 3" }
+]
