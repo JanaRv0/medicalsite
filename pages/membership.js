@@ -9,6 +9,7 @@ export default function Membership() {
     name: '',
     email: '',
     phone: '',
+    dob: '',
     profession: '',
     category: 'Student',
     message: ''
@@ -86,16 +87,37 @@ export default function Membership() {
     setStatus('sending');
 
     try {
-      // Send application to API
-      const res = await fetch('/api/apply', {
+      // Map form data to API expected format
+      const applicationData = {
+        fullName: formData.name,
+        email: formData.email,
+        phone: formData.phone || '',
+        dateOfBirth: formData.dob || '',
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        membershipType: formData.category,
+        specialization: formData.profession || null,
+        licenseNumber: null,
+        yearsOfExperience: null,
+        medicalSchool: null
+      };
+
+      console.log('Submitting application:', applicationData);
+
+      // Send application to NEW API endpoint
+      const res = await fetch('/api/membership/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(applicationData)
       });
 
       const json = await res.json();
 
-      if (json.status === 'ok') {
+      console.log('API response:', json);
+
+      if (json.status === 'success') {
         setStatus('submitted');
         setApplicationId(json.applicationId);
         // Reset form on success
@@ -103,6 +125,7 @@ export default function Membership() {
           name: '',
           email: '',
           phone: '',
+          dob: '',
           profession: '',
           category: 'Student',
           message: ''
@@ -261,6 +284,20 @@ export default function Membership() {
                 {errors.phone}
               </span>
             )}
+          </div>
+
+          {/* Date of Birth Field */}
+          <div className="form-field">
+            <label htmlFor="dob">Date of Birth (Optional)</label>
+            <input
+              id="dob"
+              name="dob"
+              type="date"
+              className="input"
+              value={formData.dob}
+              onChange={handleChange}
+              disabled={status === 'sending'}
+            />
           </div>
 
           {/* Profession Field */}
